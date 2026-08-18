@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANU GMR - Official Site</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #0f172a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+            max-width: 450px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        h1 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+            font-size: 2rem;
+            letter-spacing: 1px;
+        }
+        p.subtitle {
+            color: #94a3b8;
+            margin-bottom: 25px;
+            font-size: 0.95rem;
+        }
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .btn {
+            display: block;
+            padding: 14px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            color: #fff;
+            transition: transform 0.2s, opacity 0.2s;
+        }
+        .btn:hover {
+            transform: translateY(-2px);
+            opacity: 0.9;
+        }
+        .btn-yt { background: #ef4444; }
+        .btn-wa { background: #22c55e; }
+        .btn-tg { background: #0ea5e9; }
+        .btn-contact { background: #8b5cf6; }
+        .footer {
+            margin-top: 25px;
+            font-size: 0.8rem;
+            color: #64748b;
+        }
+        .footer a {
+            color: #64748b;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h1>DANU GMR</h1>
+        <p class="subtitle">Welcome to the Official Links Hub</p>
+
+        <div class="btn-group">
+            <a href="{{ links.youtube }}" target="_blank" class="btn btn-yt">Subscribe YouTube Channel</a>
+            <a href="{{ links.whatsapp }}" target="_blank" class="btn btn-wa">Join WhatsApp Channel</a>
+            <a href="{{ links.telegram }}" target="_blank" class="btn btn-tg">Join Telegram Channel</a>
+            <a href="https://t.me/{{ links.telegram_admin }}" target="_blank" class="btn btn-contact">Contact on Telegram (@{{ links.telegram_admin }})</a>
+        </div>
+
+        <div class="footer">
+            <p>&copy; DANU GMR | <a href="/admin">Admin Login</a></p>
+        </div>
+    </div>
+
+</body>
+</html>
