@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DANU GMR - Admin Panel</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background: #0f172a;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #1e293b;
+            padding: 30px;
+            border-radius: 16px;
+            max-width: 500px;
+            width: 100%;
+            border: 1px solid #334155;
+        }
+        h2 {
+            color: #38bdf8;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #cbd5e1;
+            font-size: 0.9rem;
+        }
+        input[type="text"], input[type="password"], input[type="url"] {
+            width: 100%;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #475569;
+            background: #0f172a;
+            color: #fff;
+            font-size: 0.95rem;
+        }
+        .btn-submit {
+            width: 100%;
+            padding: 12px;
+            background: #0284c7;
+            border: none;
+            color: #fff;
+            font-weight: bold;
+            border-radius: 6px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn-submit:hover { background: #0369a1; }
+        .alert {
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        .alert-success { background: #15803d; color: #fff; }
+        .alert-danger { background: #b91c1c; color: #fff; }
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .top-bar a {
+            color: #f43f5e;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% if not session.get('logged_in') %}
+            <h2>Admin Login</h2>
+            <form method="POST">
+                <input type="hidden" name="action" value="login">
+                <div class="form-group">
+                    <label>Password Enter Karein:</label>
+                    <input type="password" name="password" required placeholder="Enter admin password">
+                </div>
+                <button type="submit" class="btn-submit">Login</button>
+            </form>
+        {% else %}
+            <div class="top-bar">
+                <h2>Admin Panel</h2>
+                <a href="/logout">Logout</a>
+            </div>
+
+            <form method="POST">
+                <input type="hidden" name="action" value="update">
+                
+                <div class="form-group">
+                    <label>YouTube Channel Link:</label>
+                    <input type="url" name="youtube" value="{{ links.youtube }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>WhatsApp Channel Link:</label>
+                    <input type="url" name="whatsapp" value="{{ links.whatsapp }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telegram Channel Link:</label>
+                    <input type="url" name="telegram" value="{{ links.telegram }}" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Telegram Admin Username (Without @):</label>
+                    <input type="text" name="telegram_admin" value="{{ links.telegram_admin }}" required>
+                </div>
+
+                <button type="submit" class="btn-submit">Save & Update Links</button>
+            </form>
+            <p style="margin-top: 15px; text-align: center;"><a href="/" style="color: #38bdf8; text-decoration: none;">View Main Site</a></p>
+        {% endif %}
+    </div>
+
+</body>
+</html>
